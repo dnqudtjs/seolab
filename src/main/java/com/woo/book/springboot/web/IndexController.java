@@ -1,5 +1,6 @@
 package com.woo.book.springboot.web;
 
+import com.woo.book.springboot.config.auth.LoginUser;
 import com.woo.book.springboot.config.auth.dto.SessionUser;
 import com.woo.book.springboot.domain.user.User;
 import com.woo.book.springboot.service.PostsService;
@@ -17,15 +18,15 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        System.out.println("==============================================");
         if (user != null) {
             model.addAttribute("userName", user.getName());
+            System.out.println("========================");
+            System.out.println(user.getName());
+            System.out.println("========================");
         }
         return "index";
     }
