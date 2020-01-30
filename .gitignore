@@ -12,5 +12,4 @@ build/resources/main/templates/
 build/test-results/
 build/tmp/
 src/main/resources/.vscode/
-src/test/resources/
 src/main/resources/application-oauth.properties
